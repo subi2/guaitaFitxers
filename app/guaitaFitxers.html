@@ -146,7 +146,7 @@ footer{flex:none;color:var(--mut);font-weight:normal;font-size:12px;text-align:c
 <script>if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){navigator.serviceWorker.register("../sw.js").catch(function(){});}</script>
 </head>
 <body>
-<header><h1><span>Guaita</span> Fitxers</h1><small>fitxers Revit · versió · autoria · miniatures — 100% local</small></header>
+<header><h1><span>Guaita</span> Fitxers</h1><small>fitxers RVT · versió · autoria · miniatures — 100% local</small></header>
 
 <div id="disposicio" hidden>
   <aside id="arbre">
@@ -216,7 +216,7 @@ footer{flex:none;color:var(--mut);font-weight:normal;font-size:12px;text-align:c
       <span class="xip" data-x="tots" title="Selecciona tots els formats; torna a clicar per no seleccionar-ne cap">Tots</span>
       <span class="xip" data-x="estel">*.*</span>
       <span class="xip" id="recursiu" title="Inclou totes les subcarpetes">⤵ Subcarpetes</span>
-      <span class="xip" id="copies" title="Còpies de seguretat de Revit (NOM.0040.rvt): apilades sota el fitxer principal, amagades o visibles">⧉ Còpies: apilades</span>
+      <span class="xip" id="copies" title="Còpies de seguretat de RVT (NOM.0040.rvt): apilades sota el fitxer principal, amagades o visibles">⧉ Còpies: apilades</span>
       <span class="xip" data-x="lliure" title="Activa o desactiva les extensions escrites al costat">✎ altres</span>
       <input id="extlliure" placeholder=".xxx; .xxx" title="Extensions pròpies, separades per ; — prem Retorn per aplicar-les">
       <span class="xip xalerta" data-a="multi" title="Només fitxers amb més d'un editor">⚠ multi</span>
@@ -224,7 +224,7 @@ footer{flex:none;color:var(--mut);font-weight:normal;font-size:12px;text-align:c
       <span class="xip xalerta" data-a="dup" title="Només fitxers duplicats">≡ dups</span>
       <input id="cerca" type="search" placeholder="cerca nom o editor…">
       <button class="sec" id="tsv" title="Exporta la taula a TSV">⬇ TSV</button>
-      <span class="xip" id="pont" title="Pont amb guaita_fitxers.py per obrir Revit">⛭ pont</span>
+      <span class="xip" id="pont" title="Pont amb guaita_fitxers.py per obrir RVT">⛭ pont</span>
       <input id="rutabs" placeholder="ruta absoluta de l'arrel, p.ex. E:\ENTREGUES" hidden>
     </div>
     <div id="graella"></div>
@@ -375,7 +375,7 @@ class CFB {
   exists(path){ return this.paths.has(path); }
 }
 
-/* ═══════════════════════ Utilitats de parsing Revit ═══════════════════════ */
+/* ═══════════════════════ Utilitats de parsing RVT ═══════════════════════ */
 const findBytes=(hay,needle,from=0)=>{
   outer: for(let i=from;i<=hay.length-needle.length;i++){
     for(let j=0;j<needle.length;j++) if(hay[i+j]!==needle[j]) continue outer;
@@ -549,7 +549,7 @@ const HTMLS=["html","htm"];
 const XIPS={rvt:["rvt"],rfa:["rfa"],rte:["rte"],rft:["rft"],dwg:["dwg"],"3d":GRUP3D,img:IMATGES,pdf:["pdf"],bcf:["bcf"],html:HTMLS};
 const TOTES=[...RVT_FAM,"dwg",...GRUP3D,...IMATGES,"pdf","bcf",...HTMLS];
 let FILTRE=new Set(RVT_FAM), TOT=false, EXTRA=[];
-/* Còpies de seguretat de Revit: NOM.0040.rvt / NOMFAMILIA.0003.rfa */
+/* Còpies de seguretat de RVT: NOM.0040.rvt / NOMFAMILIA.0003.rfa */
 const RE_COPIA=/^(.*)\.(\d{4})\.(rvt|rfa|rte|rft)$/i;
 const esCopia=n=>{const m=n.match(RE_COPIA); return m?{base:m[1],num:+m[2],ext:m[3].toLowerCase()}:null;};
 let MODECOPIES="apila";   // apila · amaga · mostra
@@ -578,7 +578,7 @@ async function llegeixHandle(){ if(!teIDB) return null;
     return await new Promise(res=>{const q=db.transaction("kv").objectStore("kv").get("arrel");
       q.onsuccess=()=>res(q.result||null); q.onerror=()=>res(null);});}catch(e){return null;} }
 
-/* ─── Pont amb guaita_fitxers.py (obrir amb Revit) ─── */
+/* ─── Pont amb guaita_fitxers.py (obrir amb RVT) ─── */
 async function detectaPont(){
   try{
     const r=await fetch("http://127.0.0.1:8765/api/revits",{signal:AbortSignal.timeout(900)});
@@ -587,8 +587,8 @@ async function detectaPont(){
   const p=$("#pont");
   p.classList.toggle("viu",!!PONT);
   p.textContent=PONT?`⛭ pont actiu (${PONT.map(r=>r.year).join(", ")})`:"⛭ pont";
-  p.title=PONT?"guaita_fitxers.py detectat: pots obrir fitxers amb Revit"
-             :"Executa guaita_fitxers.py per poder obrir amb Revit (clic per reintentar)";
+  p.title=PONT?"guaita_fitxers.py detectat: pots obrir fitxers amb RVT"
+             :"Executa guaita_fitxers.py per poder obrir amb RVT (clic per reintentar)";
   $("#rutabs").hidden=!PONT;
   if(PONT&&!$("#rutabs").value) $("#rutabs").value=localStorage.getItem("guaita_rutabs")||"";
   if(ITEMS.length) render();
@@ -1099,7 +1099,7 @@ async function parseBcf(file){
   return out;
 }
 
-/* ─── Metadades dels formats no-Revit ─── */
+/* ─── Metadades dels formats no-RVT ─── */
 async function metaAltres(it,file){
   const e=it.ext;
   const posaThumb=b=>{ if(!b) return; if(it.thumbURL) URL.revokeObjectURL(it.thumbURL); it.thumbURL=URL.createObjectURL(b); };
@@ -1193,7 +1193,7 @@ async function carrega(it,força){
   actualitza(it);
 }
 
-/* ─── Còpies de seguretat de Revit: apilades sota el fitxer principal ─── */
+/* ─── Còpies de seguretat de RVT: apilades sota el fitxer principal ─── */
 function apilaCopies(){
   const principals=new Map();
   for(const it of ITEMS){
@@ -1298,7 +1298,7 @@ function etiquetes(it){
   if(it.dup!==null&&it.dup!==undefined) s+=`<span class="dup" style="background:${DUP_COLORS[it.dup%DUP_COLORS.length]}" title="Fitxer idèntic byte a byte a un altre de la llista">≡ duplicat</span>`;
   if(it.copies&&it.copies.length){
     const c=it.copies, p=new Date(dataMin(c)).toLocaleDateString("ca-ES"), u=new Date(dataMax(c)).toLocaleDateString("ca-ES");
-    s+=`<span class="copbadge" title="Còpies de seguretat de Revit — primera: ${p} · darrera: ${u}">⧉ ${c.length} còpi${c.length===1?"a":"es"} · ${p} → ${u}</span>`;
+    s+=`<span class="copbadge" title="Còpies de seguretat de RVT — primera: ${p} · darrera: ${u}">⧉ ${c.length} còpi${c.length===1?"a":"es"} · ${p} → ${u}</span>`;
   }
   return s;
 }
@@ -1442,7 +1442,7 @@ function badgeExt(ext){
 function badgeVer(m,ext){
   if(!m) return "…";
   if(!m.version) return RVT_FAM.includes(ext)?'<span class="err">versió?</span>':"—";
-  return `<span class="versio">${/^\d{4}$/.test(m.version)?"Revit "+m.version:m.version}</span>`;
+  return `<span class="versio">${/^\d{4}$/.test(m.version)?"RVT "+m.version:m.version}</span>`;
 }
 
 function pintaFitxa(it){
@@ -1509,7 +1509,7 @@ function botons(it,cont,compacte){
   const potObrir=PONT&&RVT_FAM.includes(it.ext)&&it.dir;
   const potLocalitzar=PONT&&it.dir;
   cont.innerHTML=`
-    ${potObrir?`<select class="rv">${PONT.map(r=>`<option value="${r.exe.replace(/"/g,"&quot;")}" ${r.year===it.meta?.version?"selected":""}>${r.year}</option>`).join("")}</select><button class="obre" title="Obre amb Revit">▶${compacte?"":" Obre"}</button>`:""}
+    ${potObrir?`<select class="rv">${PONT.map(r=>`<option value="${r.exe.replace(/"/g,"&quot;")}" ${r.year===it.meta?.version?"selected":""}>${r.year}</option>`).join("")}</select><button class="obre" title="Obre amb RVT">▶${compacte?"":" Obre"}</button>`:""}
     ${it.thumbURL?`<button class="sec baixa" title="Descarrega PNG">⬇${compacte?"":" PNG"}</button>`:""}
     ${potEditar?`<button class="sec canvia" title="Substitueix la miniatura">🖼${compacte?"":" Canvia"}</button><input type="file" accept="image/*" hidden>`:""}
     ${it.dir?`<button class="sec loc" title="Obre l'Explorer amb la carpeta que conté el fitxer">📂${compacte?"":" Localitza"}</button>`:""}

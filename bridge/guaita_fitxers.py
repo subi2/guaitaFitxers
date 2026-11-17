@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 Guaita-Fitxers · pont local v0.8 · SBS BIM Consulting 2026
-Navegador local de fitxers Revit (.rvt .rfa .rte .rft)
-- Versió de Revit (BasicFileInfo)
+Navegador local de fitxers RVT (.rvt .rfa .rte .rft)
+- Versió de RVT (BasicFileInfo)
 - Historial: primer i darrer editor (Global/DocumentIncrementTable)
 - Miniatura (RevitPreview4.0): visualització, descàrrega i substitució
-- Obrir amb la versió de Revit instal·lada que es triï
+- Obrir amb la versió de RVT instal·lada que es triï
 
 Ús:      python guaita_fitxers.py [carpeta_inicial]
 Requisits: pip install olefile          (lectura)
@@ -37,7 +37,7 @@ MAX_BODY = 20 * 1024 * 1024  # límit de la petició (bytes)
 PNG_SIG = b"\x89PNG\r\n\x1a\n"
 
 def is_revit(path):
-    """Només s'accepten fitxers Revit: evita llegir, obrir o modificar altres fitxers."""
+    """Només s'accepten fitxers RVT: evita llegir, obrir o modificar altres fitxers."""
     return bool(path) and os.path.normpath(path).lower().endswith(EXTS)
 
 # ──────────────────────────────── Parsing RVT ────────────────────────────────
@@ -51,13 +51,13 @@ def _find_u16(data, text):
 def parse_basicfileinfo(raw):
     """Extreu versió i usuari del stream BasicFileInfo (cerca byte-level, no depèn de l'offset 687)."""
     info = {"version": None, "build": None, "username": None}
-    # Format: 2025   (Revit ≥2021 aprox.)
+    # Format: 2025   (RVT ≥2021 aprox.)
     m = _find_u16(raw, "Format:")
     if m >= 0:
         tail = raw[m:m + 80].decode("utf-16-le", "ignore")
         g = re.search(r"Format:\s*(\d{4})", tail)
         if g: info["version"] = g.group(1)
-    # Fallback: "Autodesk Revit 2019" dins Revit Build:
+    # Fallback: "Autodesk Revit 2019" dins RVT Build:
     if not info["version"]:
         m = _find_u16(raw, "Autodesk Revit")
         if m >= 0:
@@ -77,7 +77,7 @@ def parse_basicfileinfo(raw):
     return info
 
 def _gunzip_tolerant(raw):
-    """Descomprimeix gzip saltant la capçalera de 8 bytes de Revit, tolerant amb padding final."""
+    """Descomprimeix gzip saltant la capçalera de 8 bytes de RVT, tolerant amb padding final."""
     for skip in (8, 0):
         try:
             d = zlib.decompressobj(16 + 15)
@@ -145,7 +145,7 @@ def extract_png_span(raw):
     return None
 
 def read_rvt_info(path):
-    """Llegeix metadades d'un fitxer Revit. Retorna dict."""
+    """Llegeix metadades d'un fitxer RVT. Retorna dict."""
     out = {"version": None, "build": None, "first_by": None, "first_ts": None,
            "last_by": None, "last_ts": None, "saves": 0, "has_thumb": False, "error": None}
     try:
@@ -265,7 +265,7 @@ def _normalize_png(img_bytes, old_png):
             return None
     return img_bytes if img_bytes[:8] == PNG_SIG else None
 
-# ────────────────────────────── Revit instal·lats ────────────────────────────
+# ────────────────────────────── RVT instal·lats ────────────────────────────
 
 def installed_revits():
     """Detecta els Revit.exe instal·lats. Retorna [{year, exe}] ordenat."""
@@ -369,12 +369,12 @@ class Handler(BaseHTTPRequestHandler):
             elif u.path == "/api/browse":
                 self._json(list_dir(p or START_DIR))
             elif u.path == "/api/info":
-                if not is_revit(p): return self._json({"error": "No és un fitxer Revit"}, 400)
+                if not is_revit(p): return self._json({"error": "No és un fitxer RVT"}, 400)
                 info = read_rvt_info(p)
                 info.pop("_thumb_stream", None)
                 self._json(info)
             elif u.path == "/api/thumb":
-                if not is_revit(p): return self._json({"error": "No és un fitxer Revit"}, 400)
+                if not is_revit(p): return self._json({"error": "No és un fitxer RVT"}, 400)
                 png = read_thumbnail(p)
                 if png: self._bytes(png, "image/png")
                 else: self._json({"error": "sense miniatura"}, 404)
@@ -400,7 +400,7 @@ class Handler(BaseHTTPRequestHandler):
                 d = json.loads(body)
                 path = os.path.normpath(d.get("path", ""))
                 if not is_revit(path) or not os.path.isfile(path):
-                    return self._json({"ok": False, "msg": "Fitxer Revit no vàlid"}, 400)
+                    return self._json({"ok": False, "msg": "Fitxer RVT no vàlid"}, 400)
                 if IS_WIN:
                     subprocess.Popen(["explorer", "/select," + path], close_fds=True)
                 else:
@@ -412,13 +412,13 @@ class Handler(BaseHTTPRequestHandler):
                 if not any(r["exe"] == exe for r in REVITS):
                     return self._json({"ok": False, "msg": "Executable no reconegut"}, 400)
                 if not is_revit(path) or not os.path.isfile(path):
-                    return self._json({"ok": False, "msg": "Fitxer Revit no vàlid"}, 400)
+                    return self._json({"ok": False, "msg": "Fitxer RVT no vàlid"}, 400)
                 subprocess.Popen([exe, path], close_fds=True)
                 self._json({"ok": True, "msg": f"Obrint amb {os.path.basename(os.path.dirname(exe))}…"})
             elif u.path == "/api/thumb":
                 d = json.loads(body)
                 if not is_revit(d.get("path", "")) or not os.path.isfile(d.get("path", "")):
-                    return self._json({"ok": False, "msg": "Fitxer Revit no vàlid"}, 400)
+                    return self._json({"ok": False, "msg": "Fitxer RVT no vàlid"}, 400)
                 img = base64.b64decode(d["data"])
                 ok, msg = write_thumbnail(d["path"], img)
                 self._json({"ok": ok, "msg": msg}, 200 if ok else 400)
@@ -435,9 +435,9 @@ if __name__ == "__main__":
     url = f"http://127.0.0.1:{PORT}/"
     print(f"Guaita-Fitxers (pont) · {url}\nCarpeta inicial: {START_DIR}\nOrígens permesos: {', '.join(sorted(ALLOWED_ORIGINS))}")
     if REVITS:
-        print("Revit detectats:", ", ".join(r["year"] for r in REVITS))
+        print("RVT detectats:", ", ".join(r["year"] for r in REVITS))
     else:
-        print("Cap Revit detectat (o no és Windows): el botó «Obre» no estarà disponible.")
+        print("Cap RVT detectat (o no és Windows): el botó «Obre» no estarà disponible.")
     try:
         srv.serve_forever()
     except KeyboardInterrupt:
