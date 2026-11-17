@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Help · Guaita Fitxers v.0.8</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="../icons/icon-192.png"><link rel="apple-touch-icon" href="../icons/icon-192.png"><link rel="manifest" href="../manifest.webmanifest"><meta name="theme-color" content="#16181c"><link rel="alternate" hreflang="en" href="help.html"><link rel="alternate" hreflang="ca" href="../pageCAT/ajuda.html">
+<script>if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){navigator.serviceWorker.register("../sw.js").catch(function(){});}</script>
+<style>
+:root{--groc:#e8ff2b;--fons:#16181c;--panell:#1f2228;--vora:#31353d;--text:#e8eaee;--mut:#9aa0ab}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.6 "Segoe UI",system-ui,sans-serif;background:var(--fons);color:var(--text)}
+header{display:flex;align-items:baseline;gap:14px;padding:16px 28px;border-bottom:2px solid var(--groc);position:sticky;top:0;background:var(--fons);z-index:2}
+header h1{margin:0;font-size:22px;letter-spacing:.5px}
+header h1 span{color:var(--groc)}
+header small{color:var(--mut)}
+.embolcall{display:flex;max-width:1100px;margin:0 auto;gap:28px;padding:24px 28px 60px}
+nav{flex:none;width:220px;position:sticky;top:78px;align-self:flex-start;font-size:14px}
+nav a{display:block;color:var(--mut);text-decoration:none;padding:4px 8px;border-left:2px solid transparent;border-radius:0 5px 5px 0}
+nav a:hover{color:var(--text);border-left-color:var(--vora)}
+nav a.tit{color:var(--groc);font-weight:700;margin-top:12px}
+main{flex:1;min-width:0}
+h2{color:var(--groc);border-bottom:1px solid var(--vora);padding-bottom:6px;margin:34px 0 12px;font-size:19px}
+h2:first-child{margin-top:0}
+h3{font-size:16px;margin:20px 0 6px}
+p{margin:8px 0}
+ul{margin:8px 0;padding-left:22px}
+li{margin:4px 0}
+kbd{background:var(--panell);border:1px solid var(--vora);border-bottom-width:2px;border-radius:5px;padding:1px 7px;font-family:Consolas,monospace;font-size:13px;color:var(--text)}
+.tec{color:var(--groc);font-weight:700}
+code{background:var(--panell);border:1px solid var(--vora);border-radius:4px;padding:1px 6px;font-family:Consolas,monospace;font-size:13.5px}
+.nota{background:var(--panell);border-left:3px solid var(--groc);border-radius:0 8px 8px 0;padding:10px 14px;margin:14px 0}
+.avis{background:var(--panell);border-left:3px solid #d9930d;border-radius:0 8px 8px 0;padding:10px 14px;margin:14px 0}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--vora)}
+th{color:var(--groc)}
+td:first-child{white-space:nowrap}
+.etiq{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:4px}
+.e-rvt{background:#2f6fed;color:#fff}.e-ifc{background:#c2312f;color:#fff}.e-dwg{background:#8a1f1f;color:#fff}
+.e-3d{background:#0f6e8c;color:#fff}.e-img{background:#1f7a55;color:#fff}.e-pdf{background:#b3211f;color:#fff}
+.e-bcf{background:#0b7285;color:#fff}.e-html{background:#c2571f;color:#fff}
+a{color:var(--groc)}
+footer{border-top:1px solid var(--vora);text-align:center;color:var(--mut);font-size:12px;padding:16px}
+footer b{color:var(--groc)}
+details{background:var(--panell);border:1px solid var(--vora);border-radius:6px;margin:8px 0;padding:8px 12px}
+summary{cursor:pointer;font-weight:600}
+</style>
+</head>
+<body>
+<header><h1><span>Guaita</span> Fitxers</h1><small>user help · v.0.8 · <a href="../pageCAT/ajuda.html">CA</a></small></header>
+
+<div class="embolcall">
+<nav>
+  <a class="tit" href="#intro">Introduction</a>
+  <a href="#inici">Opening a folder</a>
+  <a href="#arbres">The two trees</a>
+  <a class="tit" href="#info">File information</a>
+  <a href="#formats">Formats and filters</a>
+  <a href="#copies">Revit backups</a>
+  <a href="#ordre">Sorting</a>
+  <a href="#miniatures">Thumbnails</a>
+  <a href="#detall">Details and history</a>
+  <a class="tit" href="#gestio">File management</a>
+  <a href="#seleccio">Selection</a>
+  <a href="#operacions">Copy, move, delete</a>
+  <a href="#arrossegar">Drag and drop</a>
+  <a href="#safata">File tray</a>
+  <a href="#carpetes">Folders and renaming</a>
+  <a href="#desfes">Undo and log</a>
+  <a class="tit" href="#pont">The bridge to Revit</a>
+  <a href="#obrir">Open with Revit</a>
+  <a href="#localitzar">Locate and copy path</a>
+  <a class="tit" href="#dreceres">Keyboard shortcuts</a>
+  <a href="#privadesa">Privacy</a>
+</nav>
+
+<main>
+<h2 id="intro">Introduction</h2>
+<p>Guaita Fitxers is a Revit and CAD file browser that runs <b>entirely in the browser</b>, without installing anything and without sending any data to a server. It reads the Revit version, the authorship (first and last editor), thumbnails and metadata directly from the file binary, and lets you manage files the way you would in the system file explorer.</p>
+<div class="nota">A Chromium-based browser (<b>Chrome</b> or <b>Edge</b>) is required for all features. In other browsers only manual file selection in read-only mode works.</div>
+
+<h2 id="inici">Opening a folder</h2>
+<p>When it starts, press <b>Open a folder</b> and choose the root folder you want to explore. The browser will ask for access permission. The folder tree on the left is then loaded.</p>
+<p>If you had already opened a folder in a previous session, the <b>↩ Back to…</b> button appears to reopen it quickly (you only need to confirm the permission again).</p>
+
+<h2 id="arbres">The two trees</h2>
+<p>Guaita Fitxers has two independent folder trees:</p>
+<ul>
+<li><b>Source tree</b> (left): you browse the folders and see their contents in the central panel. Its header contains the <b>📂 Root folder</b> button, the <b>↻</b> refresh button and the current path.</li>
+<li><b>Destination tree</b> (right, yellow <b>📂 Destination folder</b> button): used <b>only as a destination</b> for copying or moving files. It shows no files, only folders, and can be on a <b>different drive</b> from the source. It is opened and hidden with the <span class="tec">◨ Destination</span> control button.</li>
+</ul>
+<p>Both trees can be <b>resized</b> by dragging the divider, have <b>◄ ►</b> buttons to go back and forward through the navigation history, and show the SBS BIM Consulting signature at the bottom.</p>
+
+<h2 id="info">File information</h2>
+<h3 id="formats">Formats and filters</h3>
+<p>Each file is shown with a type tag and, when it can be read, the version:</p>
+<table>
+<tr><th>Tag</th><th>Formats</th><th>What is read</th></tr>
+<tr><td><span class="etiq e-rvt">RVT</span> Revit</td><td>rvt · rfa · rte · rft</td><td>version, first and last editor, number of saves, thumbnail</td></tr>
+<tr><td><span class="etiq e-dwg">DWG</span></td><td>dwg</td><td>file format version and embedded preview</td></tr>
+<tr><td><span class="etiq e-3d">3D · Point clouds</span></td><td>ifc · obj · glb · gltf · 3dm · dxf · e57 · xyz · pts</td><td>schema or version, author or generator, point counts, vertices and meshes; thumbnail where available</td></tr>
+<tr><td><span class="etiq e-img">Images</span></td><td>png · jpg · jpeg</td><td>pixel dimensions and direct preview</td></tr>
+<tr><td><span class="etiq e-pdf">PDF</span></td><td>pdf</td><td>version, number of pages, author, creating application and date</td></tr>
+<tr><td><span class="etiq e-bcf">BCF</span></td><td>bcf</td><td>format version and number of topics (issues) in the container</td></tr>
+<tr><td><span class="etiq e-html">HTML</span></td><td>html · htm</td><td>document title and author from the metadata</td></tr>
+</table>
+<p>Format details for the <b>3D · Point clouds</b> group:</p>
+<ul>
+<li><b>IFC</b>: schema (IFC4, IFC2X3…) and file author.</li>
+<li><b>DXF</b>: format version, drawn thumbnail and an <b>interactive viewer</b> in the detail card.</li>
+<li><b>E57</b>: version, sensor manufacturer and model, number of scans and total points.</li>
+<li><b>XYZ · PTS</b>: point count and thumbnail with the projection of the cloud.</li>
+<li><b>OBJ</b>: vertices, faces, material library and a vertex thumbnail.</li>
+<li><b>GLB · glTF</b>: version, generating program and counts of meshes, nodes and materials.</li>
+<li><b>3DM</b>: Rhino version and preview embedded in the file.</li>
+</ul>
+<div class="nota">Very large files (point clouds, OBJ) are read only up to the first 2 MB: the counts and thumbnails for these cases are marked as <b>sample</b>.</div>
+<p>The <b>format chips</b> in the filter bar let you choose what to see. They can be combined. The <b>All</b> chip works in two ways: the first click selects all known formats and the second clears <b>all</b> of them (no format). The <b>*.*</b> chip shows any file, whatever its type.</p>
+<p>The <b>✎ other</b> chip filters by <b>custom extensions</b>: type them in the field next to it separated by semicolons (<code>.bak; .log; .csv</code>) and press Enter. They are remembered between sessions, and the chip turns them on or off without retyping. The alert chips filter only files with <span class="tec">⚠ multi</span> (more than one editor), <span class="tec">⚠ central</span> (worksharing model) or <span class="tec">≡ dups</span> (duplicates).</p>
+<p>The <span class="tec">⤵ Subfolders</span> chip scans recursively the whole tree below the active folder. The search box filters by file name, subfolder or editor name.</p>
+
+<h3 id="copies">Revit backups</h3>
+<p>Revit leaves backups with the pattern <code>NAME.0040.rvt</code> or <code>FAMILYNAME.0003.rfa</code> (dot, four digits, dot, extension) that fill working folders. The <b>⧉ Backups</b> chip manages them and has three states, which are remembered between sessions:</p>
+<ul>
+<li><b>Stacked</b> (default): they do not appear as loose files, but grouped under their main file with a blue badge that shows <b>how many there are and the dates of the first and the last one</b>. Clicking the badge opens all of them with the number, date and size.</li>
+<li><b>Hidden</b>: they disappear from the list.</li>
+<li><b>Visible</b>: they are listed like any other file (needed if you want to select them to delete or move them).</li>
+</ul>
+<div class="nota">Stacking only groups backups that are in the <b>same folder</b> as their main file. A backup whose main file is missing (because it was moved or deleted) continues to be shown as a normal file, so that no information is hidden without warning.</div>
+<p>The <b>Backups</b>, <b>First backup</b> and <b>Last backup</b> columns are also exported to TSV.</p>
+
+<h3 id="ordre">Sorting</h3>
+<p>The <b>Sort by</b> selector offers simple criteria (name, type, version, size, date, saves, first editor, last editor) and chained <b>combinations</b>, such as “Version → Type → Date”: when the first criterion ties, the next one breaks the tie. The <b>↓/↑</b> button reverses the direction. In table view you can also sort by clicking the column headers.</p>
+
+<h3 id="miniatures">Thumbnails</h3>
+<p>Thumbnails are extracted from the file. Click on one to see it enlarged at <b>twice the size</b>. With the <b>⬇ PNG</b> button you download the thumbnail. With <b>🖼 Change</b> you can replace the thumbnail of a Revit file with an image of your own (a <code>.bak</code> copy is created automatically before anything is modified).</p>
+
+<h3 id="detall">Details and history</h3>
+<p>With a file selected, press <kbd>Space</kbd> to open the <b>detail card</b>: large thumbnail, version, build, path, hash, central model path and the full history of saves, plus the metadata specific to each format (pages, author, dimensions, points, meshes…).</p>
+<p>Some formats add a viewer:</p>
+<ul>
+<li><b>DXF</b>: interactive viewer with wheel zoom and drag to pan.</li>
+<li><b>PDF</b>: the complete native browser PDF viewer, with all pages and zoom.</li>
+<li><b>Images</b>: preview at large size.</li>
+</ul>
+<p>The number of saves is clickable and opens the <b>full history</b> of edits. The <span class="tec">≡ duplicate</span> badge opens the group of identical files (same content byte for byte).</p>
+
+<h2 id="gestio">File management</h2>
+<h3 id="seleccio">Selection</h3>
+<p>It works like the system file explorer:</p>
+<ul>
+<li>Single click: selects a file.</li>
+<li><kbd>Ctrl</kbd> + click: adds or removes from the selection.</li>
+<li><kbd>Shift</kbd> + click: selects a range.</li>
+<li><kbd>Ctrl</kbd>+<kbd>A</kbd>: selects everything; <kbd>Esc</kbd> clears the selection.</li>
+</ul>
+
+<h3 id="operacions">Copy, move, delete</h3>
+<table>
+<tr><th>Action</th><th>Button</th><th>Shortcut</th></tr>
+<tr><td>Copy</td><td>⧉</td><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td></tr>
+<tr><td>Cut</td><td>✂</td><td><kbd>Ctrl</kbd>+<kbd>X</kbd></td></tr>
+<tr><td>Paste</td><td>📋</td><td><kbd>Ctrl</kbd>+<kbd>V</kbd></td></tr>
+<tr><td>Delete</td><td>🗑</td><td><kbd>Del</kbd></td></tr>
+</table>
+<p>When pasting into the same folder, conflicting names receive the suffix “- copy”. Large operations show a <b>progress bar</b> with the current file, the MB transferred and the speed, and can be cancelled.</p>
+<div class="avis">Deletion is <b>permanent</b>: it does not go to the recycle bin. It asks for confirmation and is recorded in the log, but it cannot be undone.</div>
+
+<h3 id="arrossegar">Drag and drop</h3>
+<p>You can drag files (and folders from the tree) to any folder in either tree. When you drop them:</p>
+<ul>
+<li>With <kbd>Ctrl</kbd>: direct copy.</li>
+<li>With <kbd>Shift</kbd>: direct move.</li>
+<li>With no modifier: a small menu appears to choose <b>Copy here</b> or <b>Move here</b>.</li>
+</ul>
+
+<h3 id="safata">The File tray <small style="color:var(--mut)">(inside Guaita apps)</small></h3>
+<p>When Guaita Fitxers runs <b>inside the Guaita apps launcher</b>, you can send files to the <b>File tray</b> — the shared repository at the bottom of the sidebar — and open them from there with any other Guaita tool. There are two ways:</p>
+<ul>
+<li><b>📤 button</b>: select one or more files and press the <b>📤</b> in the toolbar (next to 🗒). The selection appears in the tray as chips.</li>
+<li><b>Drag</b>: take a file (or the selection) and drop it on the tray, on the <b>chip of an app</b> in the side list (it opens with the loaded file) or on the window of an app that is already open.</li>
+</ul>
+<div class="nota">The 📤 button and this drag out only exist inside the launcher; if you open Guaita Fitxers alone in the browser they are not there and everything else works the same. The <b>internal</b> drag to copy or move between folders does not change.</div>
+
+<h3 id="carpetes">Folders and renaming</h3>
+<p>The <b>➕📁</b> button creates a folder in the active folder; <b>➕📁 New folder in destination</b> creates one in the destination tree. To <b>rename</b>, select a file and press <kbd>F2</kbd> (or the ✏ button); to rename a folder, double-click it in the tree.</p>
+
+<h3 id="desfes">Undo and log</h3>
+<p>The <b>↩</b> button (or <kbd>Ctrl</kbd>+<kbd>Z</kbd>) undoes the last copy, move, rename or create-folder operation. The <b>🗒</b> button shows the <b>log</b> of all operations in the session, exportable to TSV.</p>
+
+<h2 id="pont">The bridge to Revit</h2>
+<p>An HTML page cannot open programs or the system file explorer on its own. To do so, Guaita Fitxers can connect to a small Python program (<code>guaita_fitxers.py</code>, in the <code>bridge/</code> folder of the repository) that you run on your computer. When it is active, the <span class="tec">⛭ bridge</span> indicator turns green and shows the Revit versions detected.</p>
+<div class="nota">The bridge listens only on <code>127.0.0.1</code> (your own computer). It makes no connection to the outside.</div>
+<div class="avis">The bridge only accepts requests from the published app (<code>subi2.github.io</code>) and from <code>localhost</code>. Pages from other websites cannot use it, and it only operates on Revit files (<code>.rvt .rfa .rte .rft</code>). If you open the app as a local file (<code>file://</code>), the bridge is not accessible.</div>
+<p>So that the bridge knows where the files really are, you must type once the <b>absolute path of the root folder</b> (for example <code>E:\ENTREGUES</code>) in the field next to the indicator. For privacy, the browser does not reveal this path by itself.</p>
+
+<h3 id="obrir">Open with Revit</h3>
+<p>With the bridge active, each Revit file has a version selector and the <b>▶ Open</b> button, which starts the chosen Revit version with that file. By default the version the file was saved with is selected.</p>
+
+<h3 id="localitzar">Locate and copy path</h3>
+<ul>
+<li><b>📂 Locate</b>: with the bridge active, opens the system file explorer with the file highlighted. Without the bridge, it copies the containing folder to the clipboard so that you can paste it into the address bar.</li>
+<li><b>🔗</b>: copies the file path to the clipboard. If you have entered the root path, it copies the full <b>absolute path</b>; otherwise, the relative one.</li>
+</ul>
+
+<h2 id="dreceres">Keyboard shortcuts</h2>
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>X</kbd> / <kbd>V</kbd></td><td>Copy / Cut / Paste</td></tr>
+<tr><td><kbd>Del</kbd></td><td>Delete (permanent)</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Select all</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>Undo</td></tr>
+<tr><td><kbd>F2</kbd></td><td>Rename</td></tr>
+<tr><td><kbd>Space</kbd></td><td>Detail card</td></tr>
+<tr><td><kbd>Alt</kbd>+<kbd>←</kbd> / <kbd>→</kbd></td><td>Back / forward in the source tree</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>Clear selection / close windows</td></tr>
+</table>
+
+<h2 id="privadesa">Privacy</h2>
+<p>All processing is local: reading metadata, thumbnails, hashes and file operations happen in your browser. No file or data leaves your computer. The only possible connection is with the Python bridge, which runs on your own machine.</p>
+</main>
+</div>
+
+<footer>Guaita Fitxers · <b>SBS BIM Consulting</b> 2026 — all processing is local</footer>
+</body>
+</html>
