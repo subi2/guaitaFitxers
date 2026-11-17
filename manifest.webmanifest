@@ -1,7 +1,7 @@
 {
   "name": "Guaita Fitxers",
   "short_name": "Guaita Fitxers",
-  "description": "Navegador de fitxers Revit i CAD — Guaita Fitxers",
+  "description": "Navegador de fitxers RVT i CAD — Guaita Fitxers",
   "lang": "ca",
   "start_url": "app/guaitaFitxers.html",
   "scope": "./",
