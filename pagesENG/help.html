@@ -56,7 +56,7 @@ summary{cursor:pointer;font-weight:600}
   <a href="#arbres">The two trees</a>
   <a class="tit" href="#info">File information</a>
   <a href="#formats">Formats and filters</a>
-  <a href="#copies">Revit backups</a>
+  <a href="#copies">RVT backups</a>
   <a href="#ordre">Sorting</a>
   <a href="#miniatures">Thumbnails</a>
   <a href="#detall">Details and history</a>
@@ -67,8 +67,8 @@ summary{cursor:pointer;font-weight:600}
   <a href="#safata">File tray</a>
   <a href="#carpetes">Folders and renaming</a>
   <a href="#desfes">Undo and log</a>
-  <a class="tit" href="#pont">The bridge to Revit</a>
-  <a href="#obrir">Open with Revit</a>
+  <a class="tit" href="#pont">The bridge to RVT</a>
+  <a href="#obrir">Open with RVT</a>
   <a href="#localitzar">Locate and copy path</a>
   <a class="tit" href="#dreceres">Keyboard shortcuts</a>
   <a href="#privadesa">Privacy</a>
@@ -76,7 +76,7 @@ summary{cursor:pointer;font-weight:600}
 
 <main>
 <h2 id="intro">Introduction</h2>
-<p>Guaita Fitxers is a Revit and CAD file browser that runs <b>entirely in the browser</b>, without installing anything and without sending any data to a server. It reads the Revit version, the authorship (first and last editor), thumbnails and metadata directly from the file binary, and lets you manage files the way you would in the system file explorer.</p>
+<p>Guaita Fitxers is a RVT and CAD file browser that runs <b>entirely in the browser</b>, without installing anything and without sending any data to a server. It reads the RVT version, the authorship (first and last editor), thumbnails and metadata directly from the file binary, and lets you manage files the way you would in the system file explorer.</p>
 <div class="nota">A Chromium-based browser (<b>Chrome</b> or <b>Edge</b>) is required for all features. In other browsers only manual file selection in read-only mode works.</div>
 
 <h2 id="inici">Opening a folder</h2>
@@ -96,7 +96,7 @@ summary{cursor:pointer;font-weight:600}
 <p>Each file is shown with a type tag and, when it can be read, the version:</p>
 <table>
 <tr><th>Tag</th><th>Formats</th><th>What is read</th></tr>
-<tr><td><span class="etiq e-rvt">RVT</span> Revit</td><td>rvt · rfa · rte · rft</td><td>version, first and last editor, number of saves, thumbnail</td></tr>
+<tr><td><span class="etiq e-rvt">RVT</span></td><td>rvt · rfa · rte · rft</td><td>version, first and last editor, number of saves, thumbnail</td></tr>
 <tr><td><span class="etiq e-dwg">DWG</span></td><td>dwg</td><td>file format version and embedded preview</td></tr>
 <tr><td><span class="etiq e-3d">3D · Point clouds</span></td><td>ifc · obj · glb · gltf · 3dm · dxf · e57 · xyz · pts</td><td>schema or version, author or generator, point counts, vertices and meshes; thumbnail where available</td></tr>
 <tr><td><span class="etiq e-img">Images</span></td><td>png · jpg · jpeg</td><td>pixel dimensions and direct preview</td></tr>
@@ -119,8 +119,8 @@ summary{cursor:pointer;font-weight:600}
 <p>The <b>✎ other</b> chip filters by <b>custom extensions</b>: type them in the field next to it separated by semicolons (<code>.bak; .log; .csv</code>) and press Enter. They are remembered between sessions, and the chip turns them on or off without retyping. The alert chips filter only files with <span class="tec">⚠ multi</span> (more than one editor), <span class="tec">⚠ central</span> (worksharing model) or <span class="tec">≡ dups</span> (duplicates).</p>
 <p>The <span class="tec">⤵ Subfolders</span> chip scans recursively the whole tree below the active folder. The search box filters by file name, subfolder or editor name.</p>
 
-<h3 id="copies">Revit backups</h3>
-<p>Revit leaves backups with the pattern <code>NAME.0040.rvt</code> or <code>FAMILYNAME.0003.rfa</code> (dot, four digits, dot, extension) that fill working folders. The <b>⧉ Backups</b> chip manages them and has three states, which are remembered between sessions:</p>
+<h3 id="copies">RVT backups</h3>
+<p>RVT leaves backups with the pattern <code>NAME.0040.rvt</code> or <code>FAMILYNAME.0003.rfa</code> (dot, four digits, dot, extension) that fill working folders. The <b>⧉ Backups</b> chip manages them and has three states, which are remembered between sessions:</p>
 <ul>
 <li><b>Stacked</b> (default): they do not appear as loose files, but grouped under their main file with a blue badge that shows <b>how many there are and the dates of the first and the last one</b>. Clicking the badge opens all of them with the number, date and size.</li>
 <li><b>Hidden</b>: they disappear from the list.</li>
@@ -133,7 +133,7 @@ summary{cursor:pointer;font-weight:600}
 <p>The <b>Sort by</b> selector offers simple criteria (name, type, version, size, date, saves, first editor, last editor) and chained <b>combinations</b>, such as “Version → Type → Date”: when the first criterion ties, the next one breaks the tie. The <b>↓/↑</b> button reverses the direction. In table view you can also sort by clicking the column headers.</p>
 
 <h3 id="miniatures">Thumbnails</h3>
-<p>Thumbnails are extracted from the file. Click on one to see it enlarged at <b>twice the size</b>. With the <b>⬇ PNG</b> button you download the thumbnail. With <b>🖼 Change</b> you can replace the thumbnail of a Revit file with an image of your own (a <code>.bak</code> copy is created automatically before anything is modified).</p>
+<p>Thumbnails are extracted from the file. Click on one to see it enlarged at <b>twice the size</b>. With the <b>⬇ PNG</b> button you download the thumbnail. With <b>🖼 Change</b> you can replace the thumbnail of a RVT file with an image of your own (a <code>.bak</code> copy is created automatically before anything is modified).</p>
 
 <h3 id="detall">Details and history</h3>
 <p>With a file selected, press <kbd>Space</kbd> to open the <b>detail card</b>: large thumbnail, version, build, path, hash, central model path and the full history of saves, plus the metadata specific to each format (pages, author, dimensions, points, meshes…).</p>
@@ -188,14 +188,14 @@ summary{cursor:pointer;font-weight:600}
 <h3 id="desfes">Undo and log</h3>
 <p>The <b>↩</b> button (or <kbd>Ctrl</kbd>+<kbd>Z</kbd>) undoes the last copy, move, rename or create-folder operation. The <b>🗒</b> button shows the <b>log</b> of all operations in the session, exportable to TSV.</p>
 
-<h2 id="pont">The bridge to Revit</h2>
-<p>An HTML page cannot open programs or the system file explorer on its own. To do so, Guaita Fitxers can connect to a small Python program (<code>guaita_fitxers.py</code>, in the <code>bridge/</code> folder of the repository) that you run on your computer. When it is active, the <span class="tec">⛭ bridge</span> indicator turns green and shows the Revit versions detected.</p>
+<h2 id="pont">The bridge to RVT</h2>
+<p>An HTML page cannot open programs or the system file explorer on its own. To do so, Guaita Fitxers can connect to a small Python program (<code>guaita_fitxers.py</code>, in the <code>bridge/</code> folder of the repository) that you run on your computer. When it is active, the <span class="tec">⛭ bridge</span> indicator turns green and shows the RVT versions detected.</p>
 <div class="nota">The bridge listens only on <code>127.0.0.1</code> (your own computer). It makes no connection to the outside.</div>
-<div class="avis">The bridge only accepts requests from the published app (<code>subi2.github.io</code>) and from <code>localhost</code>. Pages from other websites cannot use it, and it only operates on Revit files (<code>.rvt .rfa .rte .rft</code>). If you open the app as a local file (<code>file://</code>), the bridge is not accessible.</div>
+<div class="avis">The bridge only accepts requests from the published app (<code>subi2.github.io</code>) and from <code>localhost</code>. Pages from other websites cannot use it, and it only operates on RVT files (<code>.rvt .rfa .rte .rft</code>). If you open the app as a local file (<code>file://</code>), the bridge is not accessible.</div>
 <p>So that the bridge knows where the files really are, you must type once the <b>absolute path of the root folder</b> (for example <code>E:\ENTREGUES</code>) in the field next to the indicator. For privacy, the browser does not reveal this path by itself.</p>
 
-<h3 id="obrir">Open with Revit</h3>
-<p>With the bridge active, each Revit file has a version selector and the <b>▶ Open</b> button, which starts the chosen Revit version with that file. By default the version the file was saved with is selected.</p>
+<h3 id="obrir">Open with RVT</h3>
+<p>With the bridge active, each RVT file has a version selector and the <b>▶ Open</b> button, which starts the chosen RVT version with that file. By default the version the file was saved with is selected.</p>
 
 <h3 id="localitzar">Locate and copy path</h3>
 <ul>

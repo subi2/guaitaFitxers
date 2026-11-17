@@ -54,7 +54,7 @@ footer b{color:var(--groc)}
   <a href="#arbres">Els dos arbres</a>
   <a class="tit" href="#info">Informació dels fitxers</a>
   <a href="#formats">Formats i filtres</a>
-  <a href="#copies">Còpies de Revit</a>
+  <a href="#copies">Còpies RVT</a>
   <a href="#ordre">Ordenació</a>
   <a href="#miniatures">Miniatures</a>
   <a href="#detall">Detall i historial</a>
@@ -65,8 +65,8 @@ footer b{color:var(--groc)}
   <a href="#safata">Safata de fitxers</a>
   <a href="#carpetes">Carpetes i reanomenar</a>
   <a href="#desfes">Desfés i registre</a>
-  <a class="tit" href="#pont">El pont amb Revit</a>
-  <a href="#obrir">Obrir amb Revit</a>
+  <a class="tit" href="#pont">El pont amb RVT</a>
+  <a href="#obrir">Obrir amb RVT</a>
   <a href="#localitzar">Localitzar i copiar ruta</a>
   <a class="tit" href="#dreceres">Dreceres de teclat</a>
   <a href="#privadesa">Privadesa</a>
@@ -74,7 +74,7 @@ footer b{color:var(--groc)}
 
 <main>
 <h2 id="intro">Introducció</h2>
-<p>Guaita Fitxers és un navegador de fitxers Revit i CAD que funciona <b>íntegrament al navegador</b>, sense instal·lar res i sense enviar cap dada a cap servidor. Llegeix la versió de Revit, l'autoria (primer i darrer editor), les miniatures i les metadades directament del binari del fitxer, i permet gestionar-los com ho faries a l'explorador del sistema.</p>
+<p>Guaita Fitxers és un navegador de fitxers RVT i CAD que funciona <b>íntegrament al navegador</b>, sense instal·lar res i sense enviar cap dada a cap servidor. Llegeix la versió RVT, l'autoria (primer i darrer editor), les miniatures i les metadades directament del binari del fitxer, i permet gestionar-los com ho faries a l'explorador del sistema.</p>
 <div class="nota">Cal un navegador basat en Chromium (<b>Chrome</b> o <b>Edge</b>) per a totes les funcions. En altres navegadors només funciona la selecció manual de fitxers en mode lectura.</div>
 
 <h2 id="inici">Obrir una carpeta</h2>
@@ -94,7 +94,7 @@ footer b{color:var(--groc)}
 <p>Cada fitxer es mostra amb una etiqueta de tipus i, quan es pot llegir, la versió:</p>
 <table>
 <tr><th>Xip</th><th>Formats</th><th>Què se'n llegeix</th></tr>
-<tr><td><span class="etiq e-rvt">RVT</span> Revit</td><td>rvt · rfa · rte · rft</td><td>versió, primer i darrer editor, nombre de desats, miniatura</td></tr>
+<tr><td><span class="etiq e-rvt">RVT</span></td><td>rvt · rfa · rte · rft</td><td>versió, primer i darrer editor, nombre de desats, miniatura</td></tr>
 <tr><td><span class="etiq e-dwg">DWG</span></td><td>dwg</td><td>versió del format i previsualització incrustada</td></tr>
 <tr><td><span class="etiq e-3d">3D · Núvols</span></td><td>ifc · obj · glb · gltf · 3dm · dxf · e57 · xyz · pts</td><td>esquema o versió, autor o generador, recomptes de punts, vèrtexs i malles; miniatura dels que en tenen</td></tr>
 <tr><td><span class="etiq e-img">Imatges</span></td><td>png · jpg · jpeg</td><td>dimensions en píxels i previsualització directa</td></tr>
@@ -117,8 +117,8 @@ footer b{color:var(--groc)}
 <p>El xip <b>✎ altres</b> filtra per <b>extensions pròpies</b>: escriu-les al camp del costat separades per punt i coma (<code>.bak; .log; .csv</code>) i prem Retorn. Es recorden entre sessions, i el xip les activa o desactiva sense haver-les de tornar a escriure. Els xips d'alerta filtren només els fitxers <span class="tec">⚠ multi</span> (més d'un editor), <span class="tec">⚠ central</span> (model amb worksharing) o <span class="tec">≡ dups</span> (duplicats).</p>
 <p>El xip <span class="tec">⤵ Subcarpetes</span> escaneja recursivament tot l'arbre penjant de la carpeta activa. El quadre de cerca filtra per nom de fitxer, subcarpeta o nom d'editor.</p>
 
-<h3 id="copies">Còpies de seguretat de Revit</h3>
-<p>Revit va deixant còpies amb el patró <code>NOM.0040.rvt</code> o <code>NOMFAMILIA.0003.rfa</code> (punt, quatre xifres, punt, extensió) que omplen les carpetes de treball. El xip <b>⧉ Còpies</b> les gestiona i té tres estats, que es recorden entre sessions:</p>
+<h3 id="copies">Còpies de seguretat de RVT</h3>
+<p>RVT va deixant còpies amb el patró <code>NOM.0040.rvt</code> o <code>NOMFAMILIA.0003.rfa</code> (punt, quatre xifres, punt, extensió) que omplen les carpetes de treball. El xip <b>⧉ Còpies</b> les gestiona i té tres estats, que es recorden entre sessions:</p>
 <ul>
 <li><b>Apilades</b> (per defecte): no apareixen com a fitxers solts, sinó agrupades sota el seu fitxer principal amb un distintiu blau que indica <b>quantes n'hi ha i les dates de la primera i la darrera</b>. Clicant el distintiu s'obren totes amb el número, la data i la mida.</li>
 <li><b>Amagades</b>: desapareixen del llistat.</li>
@@ -131,7 +131,7 @@ footer b{color:var(--groc)}
 <p>El selector <b>Ordena per</b> ofereix criteris simples (nom, tipus, versió, mida, data, desats, primer editor, darrer editor) i <b>combinacions</b> encadenades, com «Versió → Tipus → Data»: quan hi ha empat pel primer criteri, desempata pel següent. El botó <b>↓/↑</b> inverteix el sentit. A la vista de taula, també pots ordenar clicant les capçaleres de columna.</p>
 
 <h3 id="miniatures">Miniatures</h3>
-<p>Les miniatures s'extreuen del fitxer. Clica-hi a sobre per veure-les ampliades al <b>doble de mida</b>. Amb el botó <b>⬇ PNG</b> descarregues la miniatura. Amb <b>🖼 Canvia</b> pots substituir la miniatura d'un fitxer Revit per una imatge teva (es crea automàticament una còpia <code>.bak</code> abans de modificar res).</p>
+<p>Les miniatures s'extreuen del fitxer. Clica-hi a sobre per veure-les ampliades al <b>doble de mida</b>. Amb el botó <b>⬇ PNG</b> descarregues la miniatura. Amb <b>🖼 Canvia</b> pots substituir la miniatura d'un fitxer RVT per una imatge teva (es crea automàticament una còpia <code>.bak</code> abans de modificar res).</p>
 
 <h3 id="detall">Detall i historial</h3>
 <p>Amb un fitxer seleccionat, prem <kbd>Espai</kbd> per obrir la <b>fitxa de detall</b>: miniatura gran, versió, build, ruta, hash, ruta del model central i l'historial complet de desats, a més de les metadades pròpies de cada format (pàgines, autor, dimensions, punts, malles…).</p>
@@ -186,14 +186,14 @@ footer b{color:var(--groc)}
 <h3 id="desfes">Desfés i registre</h3>
 <p>El botó <b>↩</b> (o <kbd>Ctrl</kbd>+<kbd>Z</kbd>) desfà l'última operació de copiar, moure, reanomenar o crear carpeta. El botó <b>🗒</b> mostra el <b>registre</b> de totes les operacions de la sessió, exportable a TSV.</p>
 
-<h2 id="pont">El pont amb Revit</h2>
-<p>Un HTML no pot obrir programes ni l'explorador del sistema pel seu compte. Per aconseguir-ho, Guaita Fitxers es pot connectar a un petit programa Python (<code>guaita_fitxers.py</code>, a la carpeta <code>bridge/</code> del repositori) que has d'executar al teu equip. Quan és actiu, l'indicador <span class="tec">⛭ pont</span> es posa verd i mostra les versions de Revit detectades.</p>
+<h2 id="pont">El pont amb RVT</h2>
+<p>Un HTML no pot obrir programes ni l'explorador del sistema pel seu compte. Per aconseguir-ho, Guaita Fitxers es pot connectar a un petit programa Python (<code>guaita_fitxers.py</code>, a la carpeta <code>bridge/</code> del repositori) que has d'executar al teu equip. Quan és actiu, l'indicador <span class="tec">⛭ pont</span> es posa verd i mostra les versions RVT detectades.</p>
 <div class="nota">El pont escolta només a <code>127.0.0.1</code> (el teu propi equip). No obre cap connexió a l'exterior.</div>
-<div class="avis">El pont només accepta peticions des de l'app publicada (<code>subi2.github.io</code>) i des de <code>localhost</code>. Les pàgines d'altres webs no poden utilitzar-lo, i només opera sobre fitxers Revit (<code>.rvt .rfa .rte .rft</code>). Si obres l'app com a fitxer local (<code>file://</code>), el pont no hi té accés.</div>
+<div class="avis">El pont només accepta peticions des de l'app publicada (<code>subi2.github.io</code>) i des de <code>localhost</code>. Les pàgines d'altres webs no poden utilitzar-lo, i només opera sobre fitxers RVT (<code>.rvt .rfa .rte .rft</code>). Si obres l'app com a fitxer local (<code>file://</code>), el pont no hi té accés.</div>
 <p>Perquè el pont sàpiga on són realment els fitxers, has d'escriure un cop la <b>ruta absoluta de la carpeta arrel</b> (per exemple <code>E:\ENTREGUES</code>) al camp del costat de l'indicador. El navegador, per privadesa, no revela aquesta ruta pel seu compte.</p>
 
-<h3 id="obrir">Obrir amb Revit</h3>
-<p>Amb el pont actiu, cada fitxer Revit té un selector de versió i el botó <b>▶ Obre</b>, que engega la versió de Revit escollida amb aquell fitxer. Per defecte se selecciona la versió amb què es va desar el fitxer.</p>
+<h3 id="obrir">Obrir amb RVT</h3>
+<p>Amb el pont actiu, cada fitxer RVT té un selector de versió i el botó <b>▶ Obre</b>, que engega la versió RVT escollida amb aquell fitxer. Per defecte se selecciona la versió amb què es va desar el fitxer.</p>
 
 <h3 id="localitzar">Localitzar i copiar ruta</h3>
 <ul>

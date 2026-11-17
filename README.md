@@ -14,7 +14,7 @@
 
 ## Català
 
-**Guaita Fitxers** és un navegador de fitxers **Revit i CAD** que funciona íntegrament al navegador. Llegeix la versió de Revit, el primer i el darrer editor, el nombre de desats i les miniatures directament del fitxer, i permet gestionar-los com ho faries a l'explorador del sistema. No envia cap dada a cap servidor. Forma part de la suite **Guaita Apps**.
+**Guaita Fitxers** és un navegador de fitxers **RVT i CAD** que funciona íntegrament al navegador. Llegeix la versió RVT, el primer i el darrer editor, el nombre de desats i les miniatures directament del fitxer, i permet gestionar-los com ho faries a l'explorador del sistema. No envia cap dada a cap servidor. Forma part de la suite **Guaita Apps**.
 
 ### Instal·la-la com a aplicació (PWA)
 
@@ -27,13 +27,13 @@
 
 | | |
 |---|---|
-| 🏷 **Versió i autoria** | Versió de Revit, primer i darrer editor, nombre de desats i historial complet |
+| 🏷 **Versió i autoria** | Versió de RVT, primer i darrer editor, nombre de desats i historial complet |
 | 🖼 **Miniatures** | Visualització ampliada, descàrrega en PNG i substitució per una imatge pròpia (amb còpia `.bak`) |
-| ⧉ **Còpies de Revit** | Agrupa les còpies `NOM.0040.rvt` sota el fitxer principal, amb el nombre i les dates |
+| ⧉ **Còpies RVT** | Agrupa les còpies `NOM.0040.rvt` sota el fitxer principal, amb el nombre i les dates |
 | 📄 **Formats** | RVT, RFA, RTE, RFT, DWG, IFC, PDF, DXF, E57, OBJ, glTF, GLB, 3DM, BCF, HTML i imatges |
 | 🗂 **Gestió de fitxers** | Copiar, moure, reanomenar i esborrar, amb arrossegament entre carpetes, desfer i registre |
 | 📤 **Safata de fitxers** | Enviament a la safata compartida de la suite Guaita quan corre dins del launcher |
-| ⛭ **Pont amb Revit** | Opcional (Windows): obre fitxers amb la versió de Revit triada i els localitza a l'Explorador |
+| ⛭ **Pont amb RVT** | Opcional (Windows): obre fitxers amb la versió RVT triada i els localitza a l'Explorador |
 
 ### Fitxers
 
@@ -41,7 +41,7 @@
 |---|---|
 | `app/guaitaFitxers.html` | L'aplicació (un sol fitxer, versió 0.8, interfície en català) |
 | `manifest.webmanifest`, `sw.js`, `icons/` | Instal·lació com a PWA i ús sense connexió; **han d'estar a l'arrel** |
-| `bridge/guaita_fitxers.py` | Pont local opcional amb Revit (Python) |
+| `bridge/guaita_fitxers.py` | Pont local opcional amb RVT (Python) |
 | `pageCAT/index.html`, `pageCAT/ajuda.html` | Landing i manual en català |
 | `pagesENG/index.html`, `pagesENG/help.html` | Landing i manual en anglès |
 | `images/` | Imatges de presentació |
@@ -50,11 +50,11 @@
 
 1. Obre `app/guaitaFitxers.html` (o la landing de [`pageCAT/index.html`](pageCAT/index.html)).
 2. Prem **Obre una carpeta** i tria la carpeta arrel.
-3. Filtra, ordena i gestiona els fitxers. Per obrir-los amb Revit, vegeu el pont més avall.
+3. Filtra, ordena i gestiona els fitxers. Per obrir-los amb RVT, vegeu el pont més avall.
 
 📘 **Manual complet:** [`pageCAT/ajuda.html`](pageCAT/ajuda.html)
 
-### Pont amb Revit (opcional, Windows)
+### Pont amb RVT (opcional, Windows)
 
 Un HTML no pot obrir programes ni l'Explorador pel seu compte. El pont és un petit programa Python que s'executa al teu equip:
 
@@ -64,12 +64,12 @@ pip install pillow pywin32          # opcional: edició de miniatures (només Wi
 python bridge/guaita_fitxers.py "E:\ENTREGUES"
 ```
 
-El pont escolta només a `127.0.0.1` i **només accepta peticions** des de `https://subi2.github.io` i des de `localhost`. Només opera sobre fitxers Revit (`.rvt .rfa .rte .rft`). Qualsevol altra web que intenti fer-hi peticions és rebutjada amb un error 403.
+El pont escolta només a `127.0.0.1` i **només accepta peticions** des de `https://subi2.github.io` i des de `localhost`. Només opera sobre fitxers RVT (`.rvt .rfa .rte .rft`). Qualsevol altra web que intenti fer-hi peticions és rebutjada amb un error 403.
 
 ### Limitacions conegudes
 
 - Requereix un navegador basat en Chromium (Chrome o Edge) per a totes les funcions. En altres navegadors només funciona la selecció manual de fitxers en mode lectura.
-- Les funcions de Revit (versions instal·lades, obrir i localitzar) només funcionen amb el pont actiu i a Windows.
+- Les funcions de RVT (versions instal·lades, obrir i localitzar) només funcionen amb el pont actiu i a Windows.
 - Els fitxers molt grans (núvols de punts, OBJ) es llegeixen només fins als primers 2 MB; els recomptes d'aquests casos es marquen com a **mostra**.
 - L'esborrat és **definitiu**: no va a la paperera de reciclatge.
 - No és una eina per a l'anàlisi forense ni per certificar l'autoria de cap fitxer: les dades llegides són les que conté el fitxer.
@@ -88,7 +88,7 @@ Programari lliure sota la [GNU Affero General Public License v3.0 (AGPL-3.0-only
 
 ## English
 
-**Guaita Fitxers** is a **Revit and CAD** file browser that runs entirely in the browser. It reads the Revit version, the first and last editor, the number of saves and thumbnails directly from the file, and lets you manage files the way you would in the system file explorer. It does not send any data to a server. It is part of the **Guaita Apps** suite.
+**Guaita Fitxers** is a **RVT and CAD** file browser that runs entirely in the browser. It reads the RVT version, the first and last editor, the number of saves and thumbnails directly from the file, and lets you manage files the way you would in the system file explorer. It does not send any data to a server. It is part of the **Guaita Apps** suite.
 
 ### Install it as an app (PWA)
 
@@ -101,13 +101,13 @@ Programari lliure sota la [GNU Affero General Public License v3.0 (AGPL-3.0-only
 
 | | |
 |---|---|
-| 🏷 **Version and authorship** | Revit version, first and last editor, number of saves and full history |
+| 🏷 **Version and authorship** | RVT version, first and last editor, number of saves and full history |
 | 🖼 **Thumbnails** | Enlarged view, PNG download and replacement with your own image (with a `.bak` copy) |
-| ⧉ **Revit backups** | Groups `NAME.0040.rvt` backups under their main file, with the count and dates |
+| ⧉ **RVT backups** | Groups `NAME.0040.rvt` backups under their main file, with the count and dates |
 | 📄 **Formats** | RVT, RFA, RTE, RFT, DWG, IFC, PDF, DXF, E57, OBJ, glTF, GLB, 3DM, BCF, HTML and images |
 | 🗂 **File management** | Copy, move, rename and delete, with drag and drop between folders, undo and a log |
 | 📤 **File tray** | Send files to the shared Guaita tray when running inside the launcher |
-| ⛭ **Bridge to Revit** | Optional (Windows): open files with the chosen Revit version and locate them in Explorer |
+| ⛭ **Bridge to RVT** | Optional (Windows): open files with the chosen RVT version and locate them in Explorer |
 
 ### Files
 
@@ -115,7 +115,7 @@ Programari lliure sota la [GNU Affero General Public License v3.0 (AGPL-3.0-only
 |---|---|
 | `app/guaitaFitxers.html` | The application (single file, version 0.8, Catalan interface) |
 | `manifest.webmanifest`, `sw.js`, `icons/` | PWA install and offline use; **must be at the root** |
-| `bridge/guaita_fitxers.py` | Optional local Python bridge to Revit |
+| `bridge/guaita_fitxers.py` | Optional local Python bridge to RVT |
 | `pageCAT/index.html`, `pageCAT/ajuda.html` | Catalan landing and manual |
 | `pagesENG/index.html`, `pagesENG/help.html` | English landing and manual |
 | `images/` | Presentation images |
@@ -124,11 +124,11 @@ Programari lliure sota la [GNU Affero General Public License v3.0 (AGPL-3.0-only
 
 1. Open `app/guaitaFitxers.html` (or the landing page [`pagesENG/index.html`](pagesENG/index.html)).
 2. Press **Open a folder** and choose the root folder.
-3. Filter, sort and manage the files. To open them with Revit, see the bridge below.
+3. Filter, sort and manage the files. To open them with RVT, see the bridge below.
 
 📘 **Full guide:** [`pagesENG/help.html`](pagesENG/help.html)
 
-### Bridge to Revit (optional, Windows)
+### Bridge to RVT (optional, Windows)
 
 An HTML page cannot open programs or Explorer on its own. The bridge is a small Python program that runs on your computer:
 
@@ -138,12 +138,12 @@ pip install pillow pywin32          # optional: thumbnail editing (Windows only)
 python bridge/guaita_fitxers.py "E:\ENTREGUES"
 ```
 
-The bridge listens only on `127.0.0.1` and **only accepts requests** from `https://subi2.github.io` and from `localhost`. It only operates on Revit files (`.rvt .rfa .rte .rft`). Any other website trying to reach it is rejected with a 403 error.
+The bridge listens only on `127.0.0.1` and **only accepts requests** from `https://subi2.github.io` and from `localhost`. It only operates on RVT files (`.rvt .rfa .rte .rft`). Any other website trying to reach it is rejected with a 403 error.
 
 ### Known limitations
 
 - Requires a Chromium-based browser (Chrome or Edge) for all features. In other browsers only manual file selection in read-only mode works.
-- Revit features (installed versions, opening and locating files) only work with the bridge running and on Windows.
+- RVT features (installed versions, opening and locating files) only work with the bridge running and on Windows.
 - Very large files (point clouds, OBJ) are read only up to the first 2 MB; their counts are marked as **sample**.
 - Deletion is **permanent**: it does not go to the recycle bin.
 - Not a forensic tool and not a way to certify the authorship of any file: the data read is what the file contains.
