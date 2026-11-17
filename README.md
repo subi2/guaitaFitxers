@@ -2,7 +2,7 @@
 <p align="center"><img src="images/guaitaFitxers_banner.png" alt="Guaita Fitxers · SBS BIM Consulting" width="100%"></p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/versi%C3%B3-0.8-E8FF2B?style=for-the-badge&labelColor=16181C" alt="0.8">
+<img src="https://img.shields.io/badge/versi%C3%B3-0.8.1-E8FF2B?style=for-the-badge&labelColor=16181C" alt="0.8.1">
 <img src="https://img.shields.io/badge/llic%C3%A8ncia-AGPL--3.0--only-FF2ECC?style=for-the-badge&labelColor=16181C" alt="AGPL-3.0-only">
 <img src="https://img.shields.io/badge/offline-0%20CDN-00E5FF?style=for-the-badge&labelColor=16181C" alt="offline">
 <img src="https://img.shields.io/badge/PWA-instal%C2%B7lable-FFE500?style=for-the-badge&labelColor=16181C" alt="PWA">
@@ -39,7 +39,7 @@
 
 | Fitxer | Ús |
 |---|---|
-| `app/guaitaFitxers.html` | L'aplicació (un sol fitxer, versió 0.8, interfície en català) |
+| `app/guaitaFitxers.html` | L'aplicació (un sol fitxer, versió 0.8.1, interfície en català) |
 | `manifest.webmanifest`, `sw.js`, `icons/` | Instal·lació com a PWA i ús sense connexió; **han d'estar a l'arrel** |
 | `bridge/guaita_fitxers.py` | Pont local opcional amb RVT (Python) |
 | `pageCAT/index.html`, `pageCAT/ajuda.html` | Landing i manual en català |
@@ -113,7 +113,7 @@ Programari lliure sota la [GNU Affero General Public License v3.0 (AGPL-3.0-only
 
 | File | Use |
 |---|---|
-| `app/guaitaFitxers.html` | The application (single file, version 0.8, Catalan interface) |
+| `app/guaitaFitxers.html` | The application (single file, version 0.8.1, Catalan interface) |
 | `manifest.webmanifest`, `sw.js`, `icons/` | PWA install and offline use; **must be at the root** |
 | `bridge/guaita_fitxers.py` | Optional local Python bridge to RVT |
 | `pageCAT/index.html`, `pageCAT/ajuda.html` | Catalan landing and manual |

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Guaita-Fitxers · pont local v0.8 · SBS BIM Consulting 2026
+Guaita-Fitxers · pont local v0.8.1 · SBS BIM Consulting 2026
 Navegador local de fitxers RVT (.rvt .rfa .rte .rft)
 - Versió de RVT (BasicFileInfo)
 - Historial: primer i darrer editor (Global/DocumentIncrementTable)
@@ -36,7 +36,7 @@ ALLOWED_ORIGINS = {"https://subi2.github.io", "http://127.0.0.1:%d" % PORT, "htt
 MAX_BODY = 20 * 1024 * 1024  # límit de la petició (bytes)
 PNG_SIG = b"\x89PNG\r\n\x1a\n"
 
-def is_revit(path):
+def is_rvt(path):
     """Només s'accepten fitxers RVT: evita llegir, obrir o modificar altres fitxers."""
     return bool(path) and os.path.normpath(path).lower().endswith(EXTS)
 
@@ -267,7 +267,7 @@ def _normalize_png(img_bytes, old_png):
 
 # ────────────────────────────── RVT instal·lats ────────────────────────────
 
-def installed_revits():
+def installed_rvts():
     """Detecta els Revit.exe instal·lats. Retorna [{year, exe}] ordenat."""
     if not IS_WIN: return []
     found = []
@@ -279,7 +279,7 @@ def installed_revits():
     found.sort(key=lambda r: r["year"])
     return found
 
-REVITS = installed_revits()
+RVTS = installed_rvts()
 START_DIR = os.path.expanduser("~")
 
 # ─────────────────────────────── Servidor HTTP ───────────────────────────────
@@ -365,21 +365,21 @@ class Handler(BaseHTTPRequestHandler):
         p = (q.get("path") or [""])[0]
         try:
             if u.path == "/":
-                self._bytes("Guaita-Fitxers · pont local v0.8".encode(), "text/plain; charset=utf-8")
+                self._bytes("Guaita-Fitxers · pont local v0.8.1".encode(), "text/plain; charset=utf-8")
             elif u.path == "/api/browse":
                 self._json(list_dir(p or START_DIR))
             elif u.path == "/api/info":
-                if not is_revit(p): return self._json({"error": "No és un fitxer RVT"}, 400)
+                if not is_rvt(p): return self._json({"error": "No és un fitxer RVT"}, 400)
                 info = read_rvt_info(p)
                 info.pop("_thumb_stream", None)
                 self._json(info)
             elif u.path == "/api/thumb":
-                if not is_revit(p): return self._json({"error": "No és un fitxer RVT"}, 400)
+                if not is_rvt(p): return self._json({"error": "No és un fitxer RVT"}, 400)
                 png = read_thumbnail(p)
                 if png: self._bytes(png, "image/png")
                 else: self._json({"error": "sense miniatura"}, 404)
-            elif u.path == "/api/revits":
-                self._json(REVITS)
+            elif u.path == "/api/rvts":
+                self._json(RVTS)
             else:
                 self._json({"error": "ruta desconeguda"}, 404)
         except Exception as e:
@@ -399,7 +399,7 @@ class Handler(BaseHTTPRequestHandler):
             if u.path == "/api/reveal":
                 d = json.loads(body)
                 path = os.path.normpath(d.get("path", ""))
-                if not is_revit(path) or not os.path.isfile(path):
+                if not is_rvt(path) or not os.path.isfile(path):
                     return self._json({"ok": False, "msg": "Fitxer RVT no vàlid"}, 400)
                 if IS_WIN:
                     subprocess.Popen(["explorer", "/select," + path], close_fds=True)
@@ -409,15 +409,15 @@ class Handler(BaseHTTPRequestHandler):
             elif u.path == "/api/open":
                 d = json.loads(body)
                 exe = d.get("exe"); path = d.get("path")
-                if not any(r["exe"] == exe for r in REVITS):
+                if not any(r["exe"] == exe for r in RVTS):
                     return self._json({"ok": False, "msg": "Executable no reconegut"}, 400)
-                if not is_revit(path) or not os.path.isfile(path):
+                if not is_rvt(path) or not os.path.isfile(path):
                     return self._json({"ok": False, "msg": "Fitxer RVT no vàlid"}, 400)
                 subprocess.Popen([exe, path], close_fds=True)
                 self._json({"ok": True, "msg": f"Obrint amb {os.path.basename(os.path.dirname(exe))}…"})
             elif u.path == "/api/thumb":
                 d = json.loads(body)
-                if not is_revit(d.get("path", "")) or not os.path.isfile(d.get("path", "")):
+                if not is_rvt(d.get("path", "")) or not os.path.isfile(d.get("path", "")):
                     return self._json({"ok": False, "msg": "Fitxer RVT no vàlid"}, 400)
                 img = base64.b64decode(d["data"])
                 ok, msg = write_thumbnail(d["path"], img)
@@ -434,8 +434,8 @@ if __name__ == "__main__":
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     url = f"http://127.0.0.1:{PORT}/"
     print(f"Guaita-Fitxers (pont) · {url}\nCarpeta inicial: {START_DIR}\nOrígens permesos: {', '.join(sorted(ALLOWED_ORIGINS))}")
-    if REVITS:
-        print("RVT detectats:", ", ".join(r["year"] for r in REVITS))
+    if RVTS:
+        print("RVT detectats:", ", ".join(r["year"] for r in RVTS))
     else:
         print("Cap RVT detectat (o no és Windows): el botó «Obre» no estarà disponible.")
     try:

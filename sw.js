@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: AGPL-3.0-only — Guaita Fitxers: cache offline (precàrrega + cache-first) */
-const CACHE = 'guaitaFitxers-v0.8';
+const CACHE = 'guaitaFitxers-v0.8.1';
 const ASSETS = [
   './', 'index.html', 'app/guaitaFitxers.html', 'manifest.webmanifest',
   'pageCAT/index.html', 'pageCAT/ajuda.html', 'pagesENG/index.html', 'pagesENG/help.html',

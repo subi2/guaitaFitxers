@@ -2,7 +2,7 @@
 <html lang="ca">
 <head>
 <meta charset="utf-8">
-<title>Guaita Fitxers v.0.8</title>
+<title>Guaita Fitxers v.0.8.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 :root{--groc:#e8ff2b;--fons:#16181c;--panell:#1f2228;--vora:#31353d;--text:#e8eaee;--mut:#9aa0ab}
@@ -581,7 +581,7 @@ async function llegeixHandle(){ if(!teIDB) return null;
 /* ─── Pont amb guaita_fitxers.py (obrir amb RVT) ─── */
 async function detectaPont(){
   try{
-    const r=await fetch("http://127.0.0.1:8765/api/revits",{signal:AbortSignal.timeout(900)});
+    const r=await fetch("http://127.0.0.1:8765/api/rvts",{signal:AbortSignal.timeout(900)});
     PONT=await r.json(); if(!Array.isArray(PONT)||!PONT.length) PONT=null;
   }catch(e){ PONT=null; }
   const p=$("#pont");
@@ -598,7 +598,7 @@ function rutaAbsoluta(it){
   if(!base) return null;
   return [base,...(it.rel?it.rel.split("/"):[]),it.name].join("\\");
 }
-async function obreAmbRevit(it,exe){
+async function obreAmbRVT(it,exe){
   const path=rutaAbsoluta(it);
   if(!path){ avis("Escriu la ruta absoluta de la carpeta arrel al camp del costat del pont"); $("#rutabs").focus(); return; }
   try{
@@ -1515,7 +1515,7 @@ function botons(it,cont,compacte){
     ${it.dir?`<button class="sec loc" title="Obre l'Explorer amb la carpeta que conté el fitxer">📂${compacte?"":" Localitza"}</button>`:""}
     <button class="sec copia" title="Copia la ruta al porta-retalls (absoluta si has indicat l'arrel)">🔗</button>`;
   const ob=cont.querySelector(".obre");
-  if(ob) ob.onclick=()=>obreAmbRevit(it,cont.querySelector(".rv").value);
+  if(ob) ob.onclick=()=>obreAmbRVT(it,cont.querySelector(".rv").value);
   const lc=cont.querySelector(".loc");
   if(lc) lc.onclick=()=>localitza(it);
   const bx=cont.querySelector(".baixa");
